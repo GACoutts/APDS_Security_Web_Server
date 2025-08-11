@@ -1,6 +1,8 @@
-import http from "http"
+import http from "http";
 //setting port thayt server listens to
 const PORT = 3000;
+
+//console.log('This is a thing we can do')
 
 //starting server 
 //req = requeust
