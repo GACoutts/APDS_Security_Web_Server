@@ -1,3 +1,4 @@
+/*
 import http from "http";
 //setting port thayt server listens to
 const PORT = 3000;
@@ -12,3 +13,17 @@ const server = http.createServer((req,res) => {
 })
 
 server.listen(PORT)
+*/
+
+import express from 'express';
+
+const PORT = 3000;
+const app = express();
+
+app.use(express.json());
+
+app.get('/',(req,res) => {
+res.send('How will this work for graphics?!?!?!?!?. Tetsting changes');
+});
+
+app.listen(PORT);
