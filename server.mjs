@@ -26,4 +26,8 @@ app.get('/',(req,res) => {
 res.send('How will this work for graphics?!?!?!?!?. Tetsting changes');
 });
 
+app.get('/test', (req, res)=>{
+    res.send('Endpoint testing with /test endpoint');
+});
+
 app.listen(PORT);
