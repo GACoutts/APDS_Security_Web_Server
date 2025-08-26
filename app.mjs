@@ -19,16 +19,16 @@ import express from 'express';
 
 const PORT = 3000;
 const app = express();
-const urlPrefix = '/api'
 
 app.use(express.json());
 
 //this '/' is the root for the site
+// ^ is home page basically
 app.get('/',(req,res) => {
 res.send('How will this work for graphics?!?!?!?!?. Tetsting changes');
 });
 
-app.get(urlPrefix + '/orders', (req, res)=>{
+app.get('/orders', (req, res)=>{
     const orders = [
         {
             id: "1",
@@ -55,4 +55,5 @@ app.get(urlPrefix + '/orders', (req, res)=>{
     )
 });
 
-app.listen(PORT);
+export default app;
+//app.listen(PORT);
