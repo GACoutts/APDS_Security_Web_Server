@@ -14,7 +14,7 @@ router.get("/", async(req,res) => {
 
 //creating of a record
 //Doesnt this need siyte input??
-router.post("/upload", async(req,res) => {
+router.post("/fruit", async(req,res) => {
 let newDocument = {
     user: req.body.user,
     content: req.body.content,

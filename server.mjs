@@ -1,13 +1,39 @@
 import https from "https";
+import http from "http";
 //gives us the ability to read and right files(how we do the . pem files)
 import fs from "fs";
-import app from "./app.mjs";
+import fruits from "./routes/fruit.mjs";
+import express from "express";
+//cross origin resource sharing
+//secuirty feature that prebents web pages form making request to other things
+//prevents malicious requests
+import cors from "cors";
 
 const PORT = 3000;
+const app = express();
 
-const server = https.createServer({
+const options = {
     key: fs.readFileSync('keys/privatekey.pem'),
     cert: fs.readFileSync('keys/certificate.pem')
-},app);
+};
+
+app.use(cors());
+app.use(express.json());
+//that '*' is a sucuity concern 
+//dont knwp why yet
+app.use((req,res,next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    //the next send the stuff to the next thing that needs to happen
+    next();
+});
+//using route model for basis
+app.use("/fruit", fruits);
+//set up the route for fruits
+app.route("/fruit", fruits);
+
+//options needs to go through the create server for the keys stuff
+let server = https.createServer(options, app);
 
 server.listen(PORT);
