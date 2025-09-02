@@ -9,11 +9,11 @@ import express from "express";
 //prevents malicious requests
 import cors from "cors";
 
-const PORT = 3000;
+const PORT = 3001;
 const app = express();
 
 const options = {
-    key: fs.readFileSync('keys/privatekey.pem'),
+    key: fs.readFileSync('keys/privateKey.pem'),
     cert: fs.readFileSync('keys/certificate.pem')
 };
 
@@ -21,11 +21,12 @@ app.use(cors());
 app.use(express.json());
 //that '*' is a sucuity concern 
 //dont knwp why yet
+
+//the next send the stuff to the next thing that needs to happen
 app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', '*');
     res.setHeader('Access-Control-Allow-Methods', '*');
-    //the next send the stuff to the next thing that needs to happen
     next();
 });
 //using route model for basis

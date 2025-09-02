@@ -19,7 +19,3 @@ try{
 let db = client.db("users");
 
 export default db;
-
-//is connection file that trys to establish connection 
-//trys to make instance connection
-// if connectuion trinfg is right it should make 
