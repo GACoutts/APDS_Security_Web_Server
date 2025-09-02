@@ -16,12 +16,12 @@ router.get("/", async(req,res) => {
 //Doesnt this need siyte input??
 router.post("/fruit", async(req,res) => {
 let newDocument = {
-    user: req.body.user,
-    content: req.body.content,
-    image: req.body.image
+    name: req.body.name,
+    comment: req.body.comment
 };
 let collection = await db.collection("fruit");
 let results = await collection.insertOne(newDocument);
 res.send(results).status(204);
 });
 
+export default router;
