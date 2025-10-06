@@ -7,22 +7,22 @@ import { ObjectId } from "mongodb";
 const router= express.Router();
 
 //getting all records of data ?to populate the site?
-
 router.get("/", async(req,res) => {
-    let collection = await db.collection("fruit");
+    let collection = await db.collection("posts");
     let results = await collection.find({}).toArray();
     res.send(results).status(200);
 });
 
 //creating of a record
-//Doesnt this need siyte input??
+//Doesnt this need site input??
 // gets input from post method under hhtp.localhost:3000/fruit/fruit
-router.post("/post", async(req,res) => {
+router.post("/upload", async(req,res) => {
 let newDocument = {
-    name: req.body.name,
-    comment: req.body.comment
+    user: req.body.user,
+    content: req.body.content,
+    Image: req.body.Image
 };
-let collection = await db.collection("fruit");
+let collection = await db.collection("posts");
 let results = await collection.insertOne(newDocument);
 res.send(results).status(204);
 });
@@ -32,12 +32,13 @@ router.patch("/:id", async(req,res) => {
     const query = {_id: new ObjectId(req.params.id)};
     const updates = {
         $set: {
-            name: req.body.name,
-            comment: req.body.comment
+            user: req.body.user,
+            content: req.body.content,
+            Image: req.body.Image
         }
     };
 
-    let collection = await db.collection("fruit");
+    let collection = await db.collection("posts");
     let result = await collection.updateOne(query,updates);
 
     res.send(result).status(200)
@@ -45,7 +46,7 @@ router.patch("/:id", async(req,res) => {
 
 //gets single record by id
 router.get("/:id", async(req,res) => {
-    let collection = await db.collection("fruit");
+    let collection = await db.collection("posts");
     let query = {_id: new ObjectId(req.params.id)};
     let result = await collection.findOne(query);
 
